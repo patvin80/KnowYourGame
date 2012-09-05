@@ -1,17 +1,36 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Know Your Game</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Know Your</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "base" %>
+  <%= stylesheet_link_tag    "client" %>
+  <%= javascript_include_tag 'jquery.min.js' %>
+
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <style type="text/css">
-	span{ cursor: pointer;}
-  </style>
 </head>
 <body>
-
-<%= yield %>
-
+<div id="wrapper">
+	<div id="masthead">
+		<div id="logo"><h1><a href="/">KNOW YOUR...</a></h1></div>
+		<ul id="meta-navigation">
+		</ul>
+		<ul id="primary-navigation">
+			<li class="first"><span><a href="/">Game</a></span></li>
+			<li><span><%= link_to 'Players', players_path %></span></li>
+			<li><span><%= link_to 'Categories', categories_path %></span></li>
+			<li class="cap"><span><a href="#">Contact Us</a></span></li>
+		</ul>
+	</div>
+	<div id="content">
+			<%=yield%>
+	</div>  
+	<div class="clr"></div>
+</div>
 </body>
 </html>
+

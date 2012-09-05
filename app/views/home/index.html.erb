@@ -1,7 +1,29 @@
-<h1>Spinner</h1>
+<style type="text/css">
+    button
+    {
+        font-size:2em;
+        font-weight:bold;
+    }
 
-<%= link_to 'Categories', categories_path %>
-<%= link_to 'Players', players_path %>
+    .button{
+      background-color: #333399;
+      background-repeat: no-repeat;
+      height:50px;
+      letter-spacing:2px;
+      font-size:medium;
+      color:White;
+    }
+    input[type="text"], 
+	input[type="password"] {
+	    border: 1px solid #ccc;
+	    padding: 2px;
+	    font-size: 2em;
+	    color: #444;
+	    width: 40px;
+	    
+	}
+	.error{border-color:#F00;}
+</style>
 <div id="container" style="overflow:hidden;width:1000px">
   <div id="inner" style="overflow:hidden;width: 2000px">
      <div style="float:left;background-color:#F0F0F0;width:600px;">
@@ -20,7 +42,7 @@
      </div>
      <div style="float:left;padding-left:20px;width:400px;">
 		<% @players.each do |player| %>
-	        <div>
+	        <div id="<%= player.id %>">
 	           <h3><%= player.name%></h3> 
 	           <button id="<%= player.name%>Inc">+</button>
 	           <input type="text" name="qty" value="0" id="<%= player.name%>Num"/>
@@ -30,14 +52,12 @@
      </div>
   </div>
 </div>
-<% category = Category.find(1) %>
-First Category = <%= category.name %>
-Number of Categories = <%= @categories.count%>
 <script type="text/javascript">
 
-	var colors = ["#B8D430", "#3AB745", "#029990", "#3501CB",
-	             "#2E2C75", "#673A7E", "#CC0071", "#F80120",
-	             "#F35B20", "#FB9A00", "#FFCC00", "#FEF200"];
+	var colors = ["#F35B20", "#FEF200", "#B8D430", "#F35B20", 
+					"#FB9A00", "#FFCC00", "#FEF200",
+	              "#F80120", "#B8D430", "#F35B20",
+	             "#FB9A00", "#FFCC00"];
 
 	var categories = new Array(); 
 	var i = 0;
@@ -205,6 +225,10 @@ drawRouletteWheel();
 	$(function () {
   		<% @players.each do |player| %>
       		$('#<%= player.name%>Num').incrementBox({ minVal: 0, maxVal: 30, incButton: "#<%= player.name%>Inc", decButton: "#<%= player.name%>Dec" });
+      		$('#<%= player.name%>Num').click(function() {$('#<%= player.name%>Num').css('border-color', 'red');
+ });
+ 			$('#<%= player.name%>Num').blur(function() {$('#<%= player.name%>Num').css('border-color', '#ccc');
+ });
 		<% end %>
    });
 
